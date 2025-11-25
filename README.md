@@ -104,7 +104,7 @@ This uploads your branch to the repo.
 
 ## 8️⃣ Wait for Review & Merge
 
-Your reviewer (Wayne or Thankdeka) will:
+Your reviewer (Wayne Largent @waynelargent and Corn @Corncodes ) will:
 
 - Review your code  
 - Approve or request changes  
