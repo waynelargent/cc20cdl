@@ -1,0 +1,1 @@
+console.log('from static/js/main.js')
