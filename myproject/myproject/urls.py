@@ -26,4 +26,5 @@ urlpatterns = [
     path('about/', views.aboutpage),
     path('privacy/', views.privacypage),
     path('users/', include('users.urls')),
+    path('ratings/', include('ratings.urls')),
 ]

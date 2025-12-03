@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Daily Pad and Narrative
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Daily Pad and Narrative</h1>
+        <form action="{% url 'ratings:narrative' %}" method = "post" class = "form-with-validation">
+            {% csrf_token %}
+            {{form}}
+            <button class = "form-submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

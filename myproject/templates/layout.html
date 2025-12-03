@@ -18,6 +18,7 @@
         <a href="/about">About</a> | 
         <a href="/privacy">Privacy</a> | 
         {% if user.is_authenticated %}
+            <a href="ratings/narrative">Narrative Form</a> |
             <form class="logout" method="post" action="{% url 'users:logout' %}">
                 {% csrf_token %}
                 <button class="logout-button">Logout</button>
