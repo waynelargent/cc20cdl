@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+   Pre-Trip Inspection
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>Pre-Trip Inspection</h1>
+        <form action="{% url 'ratings:pre-trip-insp'  %}" method = "post" class = "form-with-validation">
+            {% csrf_token %}
+            {{form}}
+            <button class = "form-submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}
