@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from . import forms
-from .models import Narrative, RoadSkills, PreTripInsp
+from .models import Narrative, BackingSkills
+from .models import RoadSkills, PreTripInsp
 
 
 # Create your views here.
@@ -19,6 +20,18 @@ def narrative(request):
         form = forms.CreateNarrative()
     return render(request,'ratings/narrative.html', {'form': form})
 
+def backing_skills(request):
+    if request.method == "POST":
+        form = forms.CreateBackingSkills(request.POST)
+        if form.is_valid():
+            newrating = form.save(commit = False)
+            newrating.instructor = request.user
+            newrating.save()
+            return redirect('/')
+    else:
+        form = forms.CreateBackingSkills()
+    return render(request,'ratings/backing_skills.html', {'form': form})         
+        
 def road_skills(request):
     if request.method == "POST":
         form = forms.CreateRoadSkills(request.POST)
