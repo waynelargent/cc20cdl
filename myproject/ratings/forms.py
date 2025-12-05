@@ -7,6 +7,11 @@ class CreateNarrative(forms.ModelForm):
         model = models.Narrative
         fields = ['student', 'narrative', 'student_approval', 'instructor_approval']
 
+
+class CreateRoadSkills(forms.ModelForm):
+    class Meta:
+        model = models.RoadSkills
+        fields = ['student', 'truck_num', 'acceleration', 'braking', 'steering', 'shifting', 'rturn_approach', 'rturn_turning', 'rturn_complete_turn', 'rturn_signal_use', 'lturn_approach', 'lturn_turning', 'lturn_complete_turn', 'lturn_signal_use', 'lane_control', 'smooth_braking', 'proper_stop', 'proper_mirror', 'enter_interstate', 'proper_lane_change', 'speed_following_distance', 'exit_interstate', 'railroad_approach', 'railroad_crossing', 'railroad_completion', 'pull_over_deceleration', 'pull_over_smooth', 'pull_over_re_entry', 'recognize_traffic_hazards', 'recognize_ohead_hazards', 'obey_laws', 'smith_system_defensive_driving', 'btw_hours', 'student_approval', 'instructor_approval']
 class CreatePreTripInsp(forms.ModelForm):
     class Meta:
         model = models.PreTripInsp
