@@ -18,3 +18,12 @@ class CreatePreTripInsp(forms.ModelForm):
             ]
 
 # Ask about date? Training hours total? Instructor License num?
+
+class CreateELDT(forms.ModelForm):
+    class Meta:
+        model = models.ELDT
+        fields = [
+           'student',  'chapter', 
+            'lesson_plan', 'score',
+            'student_approval', 'instructor_approval'
+            ]
