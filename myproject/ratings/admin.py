@@ -4,6 +4,7 @@ from .models import PreTripInsp
 from .models import RoadSkills
 from .models import ELDT
 from .models import BackingSkills
+from .models import Attendance
 
 # Register your models here.
 
@@ -12,3 +13,4 @@ admin.site.register(ELDT)
 admin.site.register(BackingSkills)
 admin.site.register(RoadSkills)
 admin.site.register(PreTripInsp)
+admin.site.register(Attendance)

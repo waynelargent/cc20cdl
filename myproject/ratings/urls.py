@@ -9,4 +9,5 @@ urlpatterns=[
     path("pre-trip-insp/", views.pre_trip_insp, name="pre-trip-insp"),
     path("eldt-and-score-sheet/", views.eldt_and_score_sheet, name = "eldt-and-score-sheet"),
     path("road-skills/", views.road_skills, name="road-skills"),
+    path("attendance/", views.attendance, name="attendance")
 ]

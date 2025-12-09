@@ -6,6 +6,7 @@ from .models import ELDT
 from .models import PreTripInsp 
 from .models import RoadSkills
 from .models import BackingSkills
+from .models import Attendance 
 # Create your views here.
 
 @login_required(login_url='/users/login') #applies to function underneath it
@@ -75,3 +76,17 @@ def eldt_and_score_sheet(request):
     else:
         form = forms.CreateELDT()
     return render(request,'ratings/eldt_and_score_sheet.html', {'form': form})
+
+
+@login_required(login_url='/users/login')
+def attendance(request):
+    if request.method == "POST":
+        form = forms.CreateAttendance(request.POST)
+        if form.is_valid():
+            newrating = form.save(commit = False)
+            newrating.instructor = request.user
+            newrating.save()
+            return redirect('/')
+    else:
+        form = forms.CreateAttendance()
+    return render(request,'ratings/attendance.html', {'form': form})
