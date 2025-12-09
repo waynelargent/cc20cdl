@@ -21,7 +21,7 @@ class CreatePreTripInsp(forms.ModelForm):
     class Meta:
         model = models.PreTripInsp
         fields = [
-           'student',  'training_hours_today', 
+            'student',  'training_hours_today', 
             'engine_compartment', 'in_cab_and_lights', 'brake_tests',
             'truck_side_rear', 'coupling_area', 'drives_and_5th_wheel',
             'trailer_sides', 'trailer_tandems', 'rear_of_trailer', 'student_approval', 'instructor_approval'
@@ -33,7 +33,57 @@ class CreateELDT(forms.ModelForm):
     class Meta:
         model = models.ELDT
         fields = [
-           'student',  'chapter', 
+            'student',  'chapter', 
             'lesson_plan', 'score',
             'student_approval', 'instructor_approval'
             ]
+        
+
+class CreateAttendance(forms.ModelForm):
+    class Meta:
+        model = models.Attendance
+        fields = [
+            'student', 'rating_date', 'time_in',
+            'break_am_out', 'break_am_in',
+            'lunch_out', 'lunch_in',
+            'break_pm_out', 'break_pm_in', 'time_out',
+            'student_approval', 'instructor_approval'
+            ]
+        widgets = {
+            'rating_date': forms.DateInput(
+                attrs={'type': 'date', 'class': 'form-control'}, 
+                format='%Y-%m-%d'
+            ),
+            'time_in':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'break_am_out':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'break_am_in':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'lunch_out':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'lunch_in':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'break_pm_out':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'break_pm_in':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+            'time_out':  forms.TimeInput(
+                attrs={'type': 'time', 'class': 'form-control'}, 
+                format='%H:%M'
+            ),
+        }

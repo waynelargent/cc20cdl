@@ -62,7 +62,7 @@ class BackingSkills(models.Model):
 
 def __str__(self):
         return f"{self.student.first_name} {self.student.last_name}" #grab students name from user table   
-  
+
 class RoadSkills(models.Model):
     student = models.ForeignKey(
         User,
@@ -217,6 +217,36 @@ class ELDT(models.Model):
         score = models.IntegerField()
         # percentage = models.IntegerField() (Autocalculation?)
         student_approval = models.BooleanField(default = False)
-        instructor_approval = models.BooleanField(default = False) # license Num.     
+        instructor_approval = models.BooleanField(default = False) # license Num.
+        
+
+class Attendance(models.Model):
+    student = models.ForeignKey(
+        User, 
+        on_delete = models.CASCADE,
+        limit_choices_to = {'groups__name' : 'students'}, #can only choose student
+        related_name = 'student_attendance'
+    )
+    instructor = models.ForeignKey(
+        User,
+        on_delete = models.CASCADE,
+        default = None,
+        related_name = 'instructor_attendance'
+    )
+    rating_date = models.DateField(default = timezone.now) #do i put the forms.DateInput here?
+    time_in = models.TimeField()
+    break_am_out = models.TimeField()
+    break_am_in = models.TimeField()
+    lunch_out = models.TimeField()
+    lunch_in = models.TimeField()
+    break_pm_out = models.TimeField()
+    break_pm_in = models.TimeField()
+    time_out = models.TimeField()
+    instructor_approval = models.BooleanField(default = False)
+    student_approval = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.student.first_name} {self.student.last_name}" 
+    #grab students name from user table             
 
 
