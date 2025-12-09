@@ -1,6 +1,6 @@
 :root {
-    --brand-teal: #00606b;
-    --action-blue: #004f71;
+    --brand-teal: #00606b; /* Tri-C Dark Teal */
+    --action-blue: #004f71; /* Tri-C Blue*/
     --top-bar-dark: #231f20;
     --footer-grey: #e6e7e8;
     --accent-red: #d93e27;
@@ -91,19 +91,10 @@ a:hover {
     gap: 1rem;
 }
 
-.logo-box {
-    background-color: var(--brand-teal);
-    color: #fff;
-    padding: 0.75rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    letter-spacing: 0.25px;
-    min-width: 130px;
-    text-transform: uppercase;
-    line-height: 1.2;
+.logo-image {
+    height: 82px;
+    width: auto;
+    display: block;
 }
 
 .brand-text {
