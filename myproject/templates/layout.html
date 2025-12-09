@@ -13,24 +13,126 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav>
-        <a href="/">🏠</a> | 
-        <a href="/about">About</a> | 
-        <a href="/privacy">Privacy</a> | 
-        {% if user.is_authenticated %}
-            <a href="ratings/narrative">Narrative Form</a> |
-            <form class="logout" method="post" action="{% url 'users:logout' %}">
-                {% csrf_token %}
-                <button class="logout-button">Logout</button>
-            </form> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Welcome {{ user.first_name }} {{ user.last_name }}
-        {% else %}
-            <a href="{% url 'users:login' %}">Login</a> 
-        {% endif %}
-    </nav>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="top-bar-links">
+                <a href="/">Cuyahoga Community College</a>
+                <a href="/about">About</a>
+                <a href="/privacy">Privacy</a>
+            </div>
+            <div class="top-bar-actions">
+                {% if user.is_authenticated %}
+                    <span class="welcome-text">Welcome {{ user.first_name }} {{ user.last_name }}</span>
+                    <form class="logout" method="post" action="{% url 'users:logout' %}">
+                        {% csrf_token %}
+                        <button class="logout-button">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'users:login' %}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="main-nav">
+            <div class="logo-lockup">
+                <div class="logo-box">
+                    <span class="logo-line">Cuyahoga</span>
+                    <span class="logo-line">Community</span>
+                    <span class="logo-line">College</span>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-name">Transportation Innovation Center</div>
+                    <div class="brand-tagline">Training | Safety | Workforce</div>
+                </div>
+            </div>
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
+                    <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
+                        <li>
+                            <form class="logout primary-logout" method="post" action="{% url 'users:logout' %}">
+                                {% csrf_token %}
+                                <button class="logout-button">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}" class="{% if request.path|slice:':7' == '/users/' %}active{% endif %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="layout-shell">
+        <aside class="sidebar">
+            <h2>Resources</h2>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
+                    <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
+                        <li>
+                            <form class="sidebar-logout" method="post" action="{% url 'users:logout' %}">
+                                {% csrf_token %}
+                                <button class="btn-action" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}" class="btn-action {% if request.path|slice:':7' == '/users/' %}active{% endif %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-columns">
+            <div>
+                <h3>About Tri-C</h3>
+                <ul>
+                    <li><a href="#">Mission &amp; Vision</a></li>
+                    <li><a href="#">Accreditation</a></li>
+                    <li><a href="#">Leadership</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Programs</h3>
+                <ul>
+                    <li><a href="#">Transportation</a></li>
+                    <li><a href="#">Manufacturing</a></li>
+                    <li><a href="#">Workforce Training</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Student Services</a></li>
+                    <li><a href="#">Financial Aid</a></li>
+                    <li><a href="#">Campus Safety</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Visit</a></li>
+                    <li><a href="#">Support Tri-C</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © {% now "Y" %} Cuyahoga Community College · Transportation Innovation Center
+        </div>
+    </footer>
 </body>
 </html>
