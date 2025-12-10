@@ -10,6 +10,7 @@
         {% endblock %}
     </title>
     <script src="{% static 'js/main.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -73,7 +74,7 @@
                     {% if user.is_authenticated %}
                         <li><a href="/ratings/attendance/" class="{% if request.path|slice:':19' == '/ratings/attendance/' %}active{% endif %}">Attendance</a></li>
                         <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
-                        <li><a href="/ratings/pre-trip-insp/" class="{% if request.path|slice:':23' == '/ratings/pre-trip-insp/' %}active{% endif %}">Pre-Trip Inspection</a></li>
+                        <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':23' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
                         <li><a href="/ratings/backing-skills/" class="{% if request.path|slice:':24' == '/ratings/backing-skills/' %}active{% endif %}">Backing Skills</a></li>
                         <li><a href="/ratings/road-skills/" class="{% if request.path|slice:':21' == '/ratings/road-skills/' %}active{% endif %}">Road Skills</a></li>
                         <li><a href="/ratings/eldt-and-score-sheet/" class="{% if request.path|slice:':30' == '/ratings/eldt-and-score-sheet/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
