@@ -43,6 +43,7 @@ class BackingSkills(models.Model):
         related_name="instructor_backing_skills",
     )
     RATING_LEVEL = {
+        0: " ",
         1: "Level 1",
         2: "Level 2",
         3: "Level 3",
@@ -51,15 +52,15 @@ class BackingSkills(models.Model):
     }
     rating_date = models.DateField(default=timezone.now)
     btw_hours = models.FloatField()
-    alley_dock = models.IntegerField(choices=RATING_LEVEL)
-    straight_line = models.IntegerField(choices=RATING_LEVEL)
-    off_set_backing_right = models.IntegerField(choices=RATING_LEVEL)
-    off_set_backing_left = models.IntegerField(choices=RATING_LEVEL)
-    parallel_park = models.IntegerField(choices=RATING_LEVEL)
-    coupling = models.IntegerField(choices=RATING_LEVEL)
-    uncoupling = models.IntegerField(choices=RATING_LEVEL)
-    pull_ups = models.IntegerField(choices=RATING_LEVEL)
-    encroachments = models.IntegerField(choices=RATING_LEVEL)
+    alley_dock = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    straight_line = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    off_set_backing_right = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    off_set_backing_left = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    parallel_park = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    coupling = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    uncoupling = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    pull_ups = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    encroachments = models.IntegerField(choices=RATING_LEVEL, default = 0)
     instructor_approval = models.BooleanField(default=False)
     student_approval = models.BooleanField(default=False)
 
@@ -81,7 +82,9 @@ class RoadSkills(models.Model):
         default=None,
         related_name="instructor_road_skills",
     )
+#   
     RATING_LEVEL = {
+        0: " ",
         1: "Level 1",
         2: "Level 2",
         3: "Level 3",
@@ -90,36 +93,36 @@ class RoadSkills(models.Model):
     }
     rating_date = models.DateField(default=timezone.now)
     truck_num = models.IntegerField(verbose_name="Truck number")
-    acceleration = models.IntegerField(choices=RATING_LEVEL)
-    braking = models.IntegerField(choices=RATING_LEVEL)
-    steering = models.IntegerField(choices=RATING_LEVEL)
-    shifting = models.IntegerField(choices=RATING_LEVEL)
-    rturn_approach = models.IntegerField(choices=RATING_LEVEL)
-    rturn_turning = models.IntegerField(choices=RATING_LEVEL)
-    rturn_complete_turn = models.IntegerField(choices=RATING_LEVEL)
-    rturn_signal_use = models.IntegerField(choices=RATING_LEVEL)
-    lturn_approach = models.IntegerField(choices=RATING_LEVEL)
-    lturn_turning = models.IntegerField(choices=RATING_LEVEL)
-    lturn_complete_turn = models.IntegerField(choices=RATING_LEVEL)
-    lturn_signal_use = models.IntegerField(choices=RATING_LEVEL)
-    lane_control = models.IntegerField(choices=RATING_LEVEL)
-    smooth_braking = models.IntegerField(choices=RATING_LEVEL)
-    proper_stop = models.IntegerField(choices=RATING_LEVEL)
-    proper_mirror = models.IntegerField(choices=RATING_LEVEL)
-    enter_interstate = models.IntegerField(choices=RATING_LEVEL)
-    proper_lane_change = models.IntegerField(choices=RATING_LEVEL)
-    speed_following_distance = models.IntegerField(choices=RATING_LEVEL)
-    exit_interstate = models.IntegerField(choices=RATING_LEVEL)
-    railroad_approach = models.IntegerField(choices=RATING_LEVEL)
-    railroad_crossing = models.IntegerField(choices=RATING_LEVEL)
-    railroad_completion = models.IntegerField(choices=RATING_LEVEL)
-    pull_over_deceleration = models.IntegerField(choices=RATING_LEVEL)
-    pull_over_smooth = models.IntegerField(choices=RATING_LEVEL)
-    pull_over_re_entry = models.IntegerField(choices=RATING_LEVEL)
-    recognize_traffic_hazards = models.IntegerField(choices=RATING_LEVEL)
-    recognize_ohead_hazards = models.IntegerField(choices=RATING_LEVEL)
-    obey_laws = models.IntegerField(choices=RATING_LEVEL)
-    smith_system_defensive_driving = models.IntegerField(choices=RATING_LEVEL)
+    acceleration = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    braking = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    steering = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    shifting = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    rturn_approach = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    rturn_turning = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    rturn_complete_turn = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    rturn_signal_use = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    lturn_approach = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    lturn_turning = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    lturn_complete_turn = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    lturn_signal_use = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    lane_control = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    smooth_braking = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    proper_stop = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    proper_mirror = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    enter_interstate = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    proper_lane_change = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    speed_following_distance = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    exit_interstate = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    railroad_approach = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    railroad_crossing = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    railroad_completion = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    pull_over_deceleration = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    pull_over_smooth = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    pull_over_re_entry = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    recognize_traffic_hazards = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    recognize_ohead_hazards = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    obey_laws = models.IntegerField(choices=RATING_LEVEL, default = 0)
+    smith_system_defensive_driving = models.IntegerField(choices=RATING_LEVEL, default = 0)
     btw_hours = models.FloatField()
     student_approval = models.BooleanField(default=False)
     instructor_approval = models.BooleanField(default=False)
@@ -152,23 +155,23 @@ class PreTripInsp(models.Model):
     )
     rating_date = models.DateField(default=timezone.now)  # this may change later
     training_hours_today = models.FloatField()
-    engine_compartment = models.IntegerField(choices=RATING_CHOICES)
+    engine_compartment = models.IntegerField(choices=RATING_CHOICES, default = 0)
     in_cab_and_lights = models.IntegerField(
-        verbose_name="In-Cab & Exterior Lights", choices=RATING_CHOICES
+        verbose_name="In-Cab & Exterior Lights", choices=RATING_CHOICES, default = 0
     )
-    brake_tests = models.IntegerField(choices=RATING_CHOICES)
+    brake_tests = models.IntegerField(choices=RATING_CHOICES, default = 0)
     truck_side_rear = models.IntegerField(
-        verbose_name="Truck Side & Rear", choices=RATING_CHOICES
+        verbose_name="Truck Side & Rear", choices=RATING_CHOICES, default = 0
     )
-    coupling_area = models.IntegerField(choices=RATING_CHOICES)
+    coupling_area = models.IntegerField(choices=RATING_CHOICES, default = 0)
     drives_and_5th_wheel = models.IntegerField(
-        verbose_name="Drives & Fifth Wheel", choices=RATING_CHOICES
+        verbose_name="Drives & Fifth Wheel", choices=RATING_CHOICES, default = 0
     )
     trailer_sides = models.IntegerField(
-        verbose_name="Trailer Sides & Cross-members", choices=RATING_CHOICES
+        verbose_name="Trailer Sides & Cross-members", choices=RATING_CHOICES, default = 0
     )
-    trailer_tandems = models.IntegerField(choices=RATING_CHOICES)
-    rear_of_trailer = models.IntegerField(choices=RATING_CHOICES)
+    trailer_tandems = models.IntegerField(choices=RATING_CHOICES, default = 0)
+    rear_of_trailer = models.IntegerField(choices=RATING_CHOICES, default = 0)
     student_approval = models.BooleanField(default=False)
     instructor_approval = models.BooleanField(default=False)
 
@@ -250,12 +253,12 @@ class Attendance(models.Model):
     )
     rating_date = models.DateField(default = timezone.now) #do i put the forms.DateInput here?
     time_in = models.TimeField()
-    break_am_out = models.TimeField()
-    break_am_in = models.TimeField()
-    lunch_out = models.TimeField()
-    lunch_in = models.TimeField()
-    break_pm_out = models.TimeField()
-    break_pm_in = models.TimeField()
+    break_am_out = models.TimeField(null = True, blank = True)
+    break_am_in = models.TimeField(null = True, blank = True)
+    lunch_out = models.TimeField(null = True, blank = True)
+    lunch_in = models.TimeField(null = True, blank = True)
+    break_pm_out = models.TimeField(null = True, blank = True)
+    break_pm_in = models.TimeField(null = True, blank = True)
     time_out = models.TimeField()
     instructor_approval = models.BooleanField(default = False)
     student_approval = models.BooleanField(default = False)
