@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Pre-Trip Inspection Ratings
+{% endblock %}
+
+{% block content %}
+  <style>
+    table, th, tr, td { border: solid 1px black;
+                        border-collapse: collapse; }
+    tr:nth-child(odd) {
+        background-color: #F0F0F0; }
+    tr:hover { background-color: #E7E7E7; }
+    td {text-align:center; }
+    .left { text-align: left; }
+    select, button { font-size: 1rem;
+                     font-family: Arial, Helvetica, sans-serif; }
+  </style>
+
+  <h2>Pre-Trip Inspection Ratings</h2>
+    <div class="left">
+      <select name="student" id="student">
+        <option value="">Select Student</option>
+      </select>
+      &nbsp;&nbsp;&nbsp;<button> Submit </button>
+      &nbsp;&nbsp;&nbsp;<a href="/ratings/pre-trip-insp/"><button> New </button></a>
+    </div><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Student</th>
+          <th>Training Hours</th>
+          <th>Engine Compartment</th>
+          <th>In Cab & Light</th>
+          <th>Brake Tests</th>
+          <th>Truck Side Rear</th>
+          <th>Coupling Area</th>
+          <th>Drives and 5th Wheel</th>
+          <th>Trailer Sides</th>
+          <th>Trailer Tandems</th>
+          <th>Rear of Trailer</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Action</th>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.rating_date|date:"M d, Y" }}</td>
+            <td>{{ r.student }}</td>
+            <td>{{ r.training_hours_today }}</td>
+            <td>{{ r.engine_compartment }}</td>
+            <td>{{ r.in_cab_and_lights }}</td>
+            <td>{{ r.brake_tests }}</td>
+            <td>{{ r.truck_side_rear }}</td>
+            <td>{{ r.coupling_area }}</td>
+            <td>{{ r.drives_and_5th_wheel }}</td>
+            <td>{{ r.trailer_sides }}</td>
+            <td>{{ r.trailer_tandems }}</td>
+            <td>{{ r.rear_of_trailer }}</td>
+            <td>
+                {% if r.instructor_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+               {% if r.student_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'ratings:instr-edit-pre-trip' r.id %}"><i class="fas fa-edit"></i></a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">
+              No evaluations found.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
