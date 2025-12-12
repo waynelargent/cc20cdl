@@ -13,4 +13,6 @@ urlpatterns=[
     path("instr-list-pre-trip/", views.instr_list_pre_trip, name="instr-list-pre-trip"),
     # <int:pk> captures the ID from the URL and passes it to the view
     path('instr-edit-pre-trip/<int:pk>/', views.instr_edit_pre_trip, name='instr-edit-pre-trip'),
+    path("instr-list-narrative/", views.instr_list_narrative, name="instr-list-narrative"),
+    path('instr-edit-narrative/<int:pk>/', views.instr_edit_narrative, name='instr-edit-narrative')
 ]
