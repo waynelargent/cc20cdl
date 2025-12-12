@@ -36,3 +36,6 @@ def instr_edit_pre_trip(request, pk):
         # 3. GET request: Pre-fill the form with the existing data
         form = forms.CreatePreTripInsp(instance=record)
     return render(request, 'ratings/pre_trip_insp.html', {'form': form})
+
+
+
