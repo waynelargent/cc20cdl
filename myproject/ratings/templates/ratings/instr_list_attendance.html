@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Attendance Records
+{% endblock %}
+
+{% block content %}
+  <style>
+    table, th, tr, td { border: solid 1px black;
+                        border-collapse: collapse; }
+    tr:nth-child(odd) {
+        background-color: #F0F0F0; }
+    tr:hover { background-color: #E7E7E7; }
+    td {text-align:center; }
+    .left { text-align: left; }
+    select, button { font-size: 1rem;
+                     font-family: Arial, Helvetica, sans-serif; } 
+  </style>
+
+  <h2>Attendance Records</h2>
+    <div class="left">
+      <select name="student" id="student">
+        <option value="">Select Student</option>
+      </select>
+      &nbsp;&nbsp;&nbsp;<button> Submit </button>
+      &nbsp;&nbsp;&nbsp;<a href="/ratings/attendance/"><button> New </button></a>
+    </div><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Student</th>
+          <th>Time In</th>
+          <th>Break (am) Out</th>
+          <th>Break (am) In</th>
+          <th>Lunch Out</th>
+          <th>Lunch In</th>
+          <th>Break (pm) Out</th>
+          <th>Break (pm) In</th>
+          <th>Time Out</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Action</th>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.rating_date|date:"M d, Y" }}</td>
+            <td>{{ r.student }}</td>
+            <td>{{ r.time_in }}</td>
+            <td>{{ r.break_am_out }}</td>
+            <td>{{ r.break_am_in }}</td>
+            <td>{{ r.lunch_out }}</td>
+            <td>{{ r.lunch_in }}</td>
+            <td>{{ r.break_pm_out }}</td>
+            <td>{{ r.break_pm_in }}</td>
+            <td>{{ r.time_out }}</td>
+            <td>
+                {% if r.instructor_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+               {% if r.student_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'ratings:instr-edit-attendance' r.id %}"><i class="fas fa-edit"></i></a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">
+              No evaluations found.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

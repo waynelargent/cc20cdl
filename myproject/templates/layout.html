@@ -17,9 +17,9 @@
     <header class="site-header">
         <div class="top-bar">
             <div class="top-bar-links">
-                <a href="/">Cuyahoga Community College</a>
-                <a href="/about/">About</a>
-                <a href="/privacy/">Privacy</a>
+                <a href="https://www.tri-c.edu/">Cuyahoga Community College</a>
+                <a href="https://www.tri-c.edu/workforce/transportation-center/class-a-CDL-truck-driver-training.html">About</a>
+                <a href="https://www.tri-c.edu/privacy.html">Privacy</a>
             </div>
             <div class="top-bar-actions">
                 {% if user.is_authenticated %}
@@ -36,8 +36,10 @@
 
         <div class="main-nav">
             <div class="logo-lockup">
+                <a href="https://www.tri-c.edu" target="_blank">
                 <img class="logo-image" src="{% static 'img/tric-logo.svg' %}" alt="Cuyahoga Community College logo">
                 <div class="brand-text">
+                </a>
                     <div class="brand-name">Transportation Innovation Center</div>
                     <div class="brand-tagline">Training | Safety | Workforce</div>
                 </div>
@@ -72,12 +74,15 @@
                     <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
                     <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="/ratings/attendance/" class="{% if request.path|slice:':19' == '/ratings/attendance/' %}active{% endif %}">Attendance</a></li>
-                        <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
-                        <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':23' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
+                       
+                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':27' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative Form</a></li>
+                       
+                        <li><a href="/ratings/instr-list-attendance/" class="{% if request.path|slice:':31' == '/ratings/instr-list-attendance/' %}active{% endif %}">Attendance</a></li>
+                        
+                        <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
                         <li><a href="/ratings/backing-skills/" class="{% if request.path|slice:':24' == '/ratings/backing-skills/' %}active{% endif %}">Backing Skills</a></li>
                         <li><a href="/ratings/road-skills/" class="{% if request.path|slice:':21' == '/ratings/road-skills/' %}active{% endif %}">Road Skills</a></li>
-                        <li><a href="/ratings/eldt-and-score-sheet/" class="{% if request.path|slice:':30' == '/ratings/eldt-and-score-sheet/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
+                        <li><a href="/ratings/instr-list-eldt/" class="{% if request.path|slice:':25' == '/ratings/instr-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
                         <li><a href="/ratings/view-my-ratings/" class="{% if request.path|slice:':25' == '/ratings/view-my-ratings/' %}active{% endif %}">View My Ratings</a></li>
                         <li>
                             <form class="sidebar-logout" method="post" action="{% url 'users:logout' %}">
