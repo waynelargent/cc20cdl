@@ -74,8 +74,11 @@
                     <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
                     <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
                     {% if user.is_authenticated %}
+                       
+                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':27' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative Form</a></li>
+                       
                         <li><a href="/ratings/instr-list-attendance/" class="{% if request.path|slice:':31' == '/ratings/instr-list-attendance/' %}active{% endif %}">Attendance</a></li>
-                        <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
+                        
                         <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
                         <li><a href="/ratings/backing-skills/" class="{% if request.path|slice:':24' == '/ratings/backing-skills/' %}active{% endif %}">Backing Skills</a></li>
                         <li><a href="/ratings/road-skills/" class="{% if request.path|slice:':21' == '/ratings/road-skills/' %}active{% endif %}">Road Skills</a></li>
