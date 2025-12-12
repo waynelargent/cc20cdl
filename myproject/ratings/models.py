@@ -5,6 +5,49 @@ from django.utils import timezone
 # Create your models here.
 
 
+class Trucks(models.Model):
+    TRUCK_CHOICES = { 
+        "School Bus" : "School Bus",
+        "Trailor" : "Trailor",
+        "Straight" : "Straight",
+        "Tractor" : "Tractor",
+        "Pulled Trailor" : "Pulled Trailor",
+    }
+    truck_num = models.CharField()
+    truck_type = models.CharField(choices = TRUCK_CHOICES)
+    truck_description = models.TextField(null = True)
+
+    def __str__(self):
+        return f"{self.truck_num} {self.truck_type}"
+
+
+class CRN(models.Model):
+    crn = models.CharField()
+    semester = models.CharField()
+    start_date = models.DateField()
+    end_date = models.DateField() # to be calculated as startdate +270 days
+    active = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.crn} {self.semester}"
+
+
+class Students(models.Model):
+    student_id= models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"groups__name": "students"}        
+    )
+    crn = models.ForeignKey(
+        CRN,
+        on_delete=models.CASCADE        
+    )
+    sphone = models.CharField()
+    active = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.student_id}"
+
 class Narrative(models.Model):
     student = models.ForeignKey(
         User,
@@ -81,8 +124,7 @@ class RoadSkills(models.Model):
         on_delete=models.CASCADE,
         default=None,
         related_name="instructor_road_skills",
-    )
-#   
+    )   
     RATING_LEVEL = {
         0: " ",
         1: "Level 1",
@@ -92,7 +134,10 @@ class RoadSkills(models.Model):
         5: "Level 5",
     }
     rating_date = models.DateField(default=timezone.now)
-    truck_num = models.IntegerField(verbose_name="Truck number")
+    truck_num = models.ForeignKey(
+        Trucks,
+        on_delete=models.CASCADE   
+    )
     acceleration = models.IntegerField(choices=RATING_LEVEL, default = 0)
     braking = models.IntegerField(choices=RATING_LEVEL, default = 0)
     steering = models.IntegerField(choices=RATING_LEVEL, default = 0)
