@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block title %}
+ELDT Logs
+{% endblock %}
+{% block content %}
+ <style>
+    table, th, tr, td { border: solid 1px black; border-collapse: collapse; }
+    tr:nth-child(odd) { background-color: #F0F0F0; }
+    tr:hover { background-color: #E7E7E7; }
+    td { text-align:center; }
+    .left { text-align: left; }
+    select, button { font-size: 1rem; font-family: Arial, Helvetica, sans-serif; }
+  </style>
+<h2>ELDT Logs</h2>
+  <div class="left">
+    <form method="get" style="display:inline;">
+      <select name="student" id="student">
+        <option value="">Select Student</option>
+        {% for s in students %}
+          <option value="{{ s.id }}" {% if selected_student == s.id|stringformat:"s" %}selected{% endif %}>
+            {{ s.get_full_name|default:s.username }}
+          </option>
+        {% endfor %}
+      </select>
+      &nbsp;&nbsp;&nbsp;<button type="submit">Submit</button>
+    </form>
+    &nbsp;&nbsp;&nbsp;<a href="{% url 'ratings:eldt-and-score-sheet' %}"><button type="button">New</button></a>
+  </div><br />
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Student</th>
+          <th>Instructor</th>
+          <th>Chapter</th>
+          <th>Lesson Plan</th>
+          <th>Score</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.student }}</td>
+            <td>{{ r.instructor }}</td>
+            <td>{{ r.get_chapter_display }}</td>
+            <td class="left">{{ r.lesson_plan|linebreaksbr }}</td>
+            <td>{{ r.score }}</td>
+            <td>{% if r.instructor_approval %}<i class="fa-solid fa-check"></i>{% else %}---{% endif %}</td>
+            <td>{% if r.student_approval %}<i class="fa-solid fa-check"></i>{% else %}---{% endif %}</td>
+            <td><a href="{% url 'ratings:instr-edit-eldt' r.id %}"><i class="fas fa-edit"></i></a></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="8" class="text-center">No ELDT records found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
