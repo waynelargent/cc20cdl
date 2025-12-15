@@ -4,7 +4,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-
 class Trucks(models.Model):
     TRUCK_CHOICES = { 
         "School Bus" : "School Bus",
@@ -33,7 +32,7 @@ class CRN(models.Model):
 
 
 class Students(models.Model):
-    student_id= models.ForeignKey(
+    student_id= models.OneToOneField(
         User,
         on_delete=models.CASCADE,
         limit_choices_to={"groups__name": "students"}        
@@ -106,7 +105,6 @@ class BackingSkills(models.Model):
     encroachments = models.IntegerField(choices=RATING_LEVEL, default = 0)
     instructor_approval = models.BooleanField(default=False)
     student_approval = models.BooleanField(default=False)
-
 
 def __str__(self): 
     return f"{self.student.first_name} {self.student.last_name}"  # grab students name from user table
@@ -189,7 +187,9 @@ class PreTripInsp(models.Model):
     student = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        limit_choices_to={"groups__name": "students"},
+        limit_choices_to={
+            "groups__name": "students",
+            "students__active": True },
         related_name="student_pre_trip_insp",
     )
     instructor = models.ForeignKey(

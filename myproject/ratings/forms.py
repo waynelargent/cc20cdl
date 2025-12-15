@@ -1,6 +1,6 @@
 from django import forms
 from . import models
-
+from django.contrib.auth.models import User
 
 class CreateNarrative(forms.ModelForm):
     class Meta:
@@ -17,7 +17,24 @@ class CreateRoadSkills(forms.ModelForm):
     class Meta:
         model = models.RoadSkills
         fields = ['student', 'truck_num', 'acceleration', 'braking', 'steering', 'shifting', 'rturn_approach', 'rturn_turning', 'rturn_complete_turn', 'rturn_signal_use', 'lturn_approach', 'lturn_turning', 'lturn_complete_turn', 'lturn_signal_use', 'lane_control', 'smooth_braking', 'proper_stop', 'proper_mirror', 'enter_interstate', 'proper_lane_change', 'speed_following_distance', 'exit_interstate', 'railroad_approach', 'railroad_crossing', 'railroad_completion', 'pull_over_deceleration', 'pull_over_smooth', 'pull_over_re_entry', 'recognize_traffic_hazards', 'recognize_ohead_hazards', 'obey_laws', 'smith_system_defensive_driving', 'btw_hours', 'student_approval', 'instructor_approval']
+
+'''
+custom field so student drop down shows the full name
+this can be used for all the forms - add the overwrite as shown in CreatePreTripInsp()
+1. Define the custom field
+'''
+class StudentNameChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        # Returns "First Last" if available, otherwise falls back to username
+        return obj.get_full_name() or obj.username
+
+# 2. Use it in your form
 class CreatePreTripInsp(forms.ModelForm):
+    # Overwrite the default field with your custom one
+    student = StudentNameChoiceField(
+        queryset=User.objects.filter(groups__name='students'),
+        empty_label="Select a Student"
+    )
     class Meta:
         model = models.PreTripInsp
         fields = [
