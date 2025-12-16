@@ -8,6 +8,7 @@ from .models import Attendance
 from .models import Trucks
 from .models import CRN
 from .models import Students
+from .models import Instructors
 
 # Register your models here.
 
@@ -20,3 +21,4 @@ admin.site.register(Attendance)
 admin.site.register(Trucks)
 admin.site.register(CRN)
 admin.site.register(Students)
+admin.site.register(Instructors)

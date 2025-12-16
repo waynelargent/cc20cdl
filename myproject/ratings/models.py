@@ -29,6 +29,19 @@ class CRN(models.Model):
 
     def __str__(self):
         return f"{self.crn} {self.semester}"
+    
+
+class Instructors(models.Model):
+    instructor_id= models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"groups__name": "instructors"}
+    )
+    cdl_number = models.CharField()
+    active = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.instructor_id}"
 
 
 class Students(models.Model):
@@ -46,6 +59,7 @@ class Students(models.Model):
 
     def __str__(self):
         return f"{self.student_id}"
+
 
 class Narrative(models.Model):
     student = models.ForeignKey(
