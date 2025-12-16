@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .. import forms
-
+from django.contrib.auth.models import User, Group   # for student filter
 
 from ..models import Attendance 
 
@@ -21,8 +21,17 @@ def attendance(request):
     return render(request,'ratings/attendance.html', {'form': form})
 
 def instr_list_attendance(request):
+    students = User.objects.filter(groups__name='students')
+    selected_student_id = request.GET.get('student_id')
     ratings = Attendance.objects.all().order_by('-rating_date')
-    return render(request, 'ratings/instr_list_attendance.html', {'ratings': ratings})
+    if selected_student_id:
+        ratings = ratings.filter(student_id=selected_student_id)
+        context = {
+            'students': students,
+            'ratings': ratings,
+            'selected_student_id': selected_student_id,
+        }
+    return render(request, 'ratings/instr_list_attendance.html', context)
 
 def instr_edit_attendance(request, pk):
     # 1. Fetch the existing record using the ID (pk) from the URL
