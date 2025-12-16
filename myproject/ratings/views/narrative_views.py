@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .. import forms
-
+from django.contrib.auth.models import User, Group   # for student filter
 
 from ..models import Narrative 
 
@@ -15,7 +15,7 @@ def narrative(request):
             newrating = form.save(commit = False)
             newrating.instructor = request.user
             newrating.save()
-            return redirect('/')
+            return redirect('/ratings/instr-list-narrative/')
     else:
         form = forms.CreateNarrative()
     return render(request,'ratings/narrative.html', {'form': form})
@@ -26,8 +26,17 @@ def view_my_ratings(request):
     return render(request, 'ratings/view_my_ratings.html', {'ratings': ratings})
 
 def instr_list_narrative(request):
+    students = User.objects.filter(groups__name='students')
+    selected_student_id = request.GET.get('student_id')
     ratings = Narrative.objects.all().order_by('-rating_date')
-    return render(request, 'ratings/instr_list_narrative.html', {'ratings': ratings})
+    if selected_student_id:
+        ratings = ratings.filter(student_id=selected_student_id)
+    context = {
+        'students': students,
+        'ratings': ratings,
+        'selected_student_id': selected_student_id,
+    }
+    return render(request, 'ratings/instr_list_narrative.html', context)
 
 def instr_edit_narrative(request, pk):
     # 1. Fetch the existing record using the ID (pk) from the URL
