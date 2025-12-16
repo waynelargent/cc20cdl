@@ -5,7 +5,7 @@ app_name="ratings"
 urlpatterns=[
     path("narrative/", views.narrative, name="narrative"),
     path("backing-skills/", views.backing_skills, name="backing-skills"),
-    path("view-my-ratings/", views.view_my_ratings, name = "view-my-ratings"), #url is the same as the name
+    
     path("pre-trip-insp/", views.pre_trip_insp, name="pre-trip-insp"),
 
     # added eldt instr list and edit list 
@@ -29,7 +29,9 @@ urlpatterns=[
     path("instr-list-backing-skills/", views.instr_list_backing_skills, name="instr-list-backing-skills"),
     path("instr-edit-backing-skills/<int:pk>/", views.instr_edit_backing_skills, name="instr-edit-backing-skills"),
     path("instr-list-narrative/", views.instr_list_narrative, name="instr-list-narrative"),
-    path('instr-edit-narrative/<int:pk>/', views.instr_edit_narrative, name='instr-edit-narrative')
+    path('instr-edit-narrative/<int:pk>/', views.instr_edit_narrative, name='instr-edit-narrative'),
+
+    path("student-list-pre-trip/", views.student_list_pre_trip, name = "student-list-pre-trip"), 
 ]
 
 

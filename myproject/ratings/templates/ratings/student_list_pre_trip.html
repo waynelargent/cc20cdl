@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    View My Pre-Trip Inspection Ratings
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>My Evaluations</h2>
+  <div >
+    <table >
+      <thead >
+        <tr>
+          <th>Date</th>
+          <th>Instructor</th>
+          <th>Training Hours</th>
+          <th>Engine Compartment</th>
+          <th>In Cab & Light</th>
+          <th>Brake Tests</th>
+          <th>Truck Side Rear</th>
+          <th>Coupling Area</th>
+          <th>Drives and 5th Wheel</th>
+          <th>Trailer Sides</th>
+          <th>Trailer Tandems</th>
+          <th>Rear of Trailer</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Action</th>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.rating_date|date:"M d, Y" }}</td>
+            <td>{{ r.instructor }}</td>
+            <td>{{ r.training_hours_today }}</td>
+            <td>{{ r.engine_compartment }}</td>
+            <td>{{ r.in_cab_and_lights }}</td>
+            <td>{{ r.brake_tests }}</td>
+            <td>{{ r.truck_side_rear }}</td>
+            <td>{{ r.coupling_area }}</td>
+            <td>{{ r.drives_and_5th_wheel }}</td>
+            <td>{{ r.trailer_sides }}</td>
+            <td>{{ r.trailer_tandems }}</td>
+            <td>{{ r.rear_of_trailer }}</td>
+            <td>
+                {% if r.instructor_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+               {% if r.student_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+                <i class="fas fa-edit"></i>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">
+              No evaluations found.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

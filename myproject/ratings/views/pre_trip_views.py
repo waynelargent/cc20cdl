@@ -53,5 +53,6 @@ def instr_edit_pre_trip(request, pk):
         form = forms.CreatePreTripInsp(instance=record)
     return render(request, 'ratings/pre_trip_insp.html', {'form': form})
 
-
-
+def student_list_pre_trip(request):
+    ratings = PreTripInsp.objects.filter(student = request.user).order_by('-rating_date') 
+    return render(request, 'ratings/student_list_pre_trip.html', {'ratings': ratings})
