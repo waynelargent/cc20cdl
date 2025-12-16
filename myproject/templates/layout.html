@@ -80,10 +80,10 @@
                         <li><a href="/ratings/instr-list-attendance/" class="{% if request.path|slice:':31' == '/ratings/instr-list-attendance/' %}active{% endif %}">Attendance</a></li>
                         
                         <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
-                        <li><a href="/ratings/backing-skills/" class="{% if request.path|slice:':24' == '/ratings/backing-skills/' %}active{% endif %}">Backing Skills</a></li>
-                        <li><a href="/ratings/road-skills/" class="{% if request.path|slice:':21' == '/ratings/road-skills/' %}active{% endif %}">Road Skills</a></li>
+                        <li><a href="/ratings/instr-list-backing-skills/" class="{% if request.path|slice:':24' == '/instr-list-backing-skills/' %}active{% endif %}">Backing Skills</a></li>
+                        <li><a href="/ratings/instr-list-road-skills/" class="{% if request.path|slice:':21' == '/ratings/instr-list-road-skills/' %}active{% endif %}">Road Skills</a></li>
                         <li><a href="/ratings/instr-list-eldt/" class="{% if request.path|slice:':25' == '/ratings/instr-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
-                        <li><a href="/ratings/view-my-ratings/" class="{% if request.path|slice:':25' == '/ratings/view-my-ratings/' %}active{% endif %}">View My Ratings</a></li>
+                      <!--  <li><a href="/ratings/view-my-ratings/" class="{% if request.path|slice:':25' == '/ratings/view-my-ratings/' %}active{% endif %}">View My Ratings</a></li> --> 
                         <li>
                             <form class="sidebar-logout" method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}
