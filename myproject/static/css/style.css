@@ -372,7 +372,7 @@ p {
     font-size: 0.95rem;
     color: #4a4a4a;
 }
-/* Table Styling */
+/* Table Styling Changes */
 table {
       width: 100%;
       border: solid 1px black;                   
@@ -400,16 +400,5 @@ table {
     tr:hover {
       background-color: #e7e7e7;
       cursor: pointer;
-    }
-
-    /* THE "SELECTED" BLUE ROW STYLE */
-    tr.selected {
-      background-color: #004f71;  
-      color: white;               
-    }
-
-    /* Adjust borders for the selected row so they don't look weird */
-    tr.selected td {
-      border-color: #006666;  
     }
     .center { text-align: center; }
