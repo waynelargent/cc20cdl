@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .. import forms
+from django.contrib.auth.models import User, Group   # for student filter
 
 from ..models import ELDT
 
@@ -19,8 +20,17 @@ def eldt_and_score_sheet(request):
     return render(request,'ratings/eldt_and_score_sheet.html', {'form': form})
 
 def instr_list_eldt(request):
+    students = User.objects.filter(groups__name='students')
+    selected_student_id = request.GET.get('student_id')
     ratings = ELDT.objects.all().order_by('chapter')
-    return render(request, 'ratings/instr_list_eldt.html', {'ratings': ratings})
+    if selected_student_id:
+        ratings = ratings.filter(student_id=selected_student_id)
+    context = {
+            'students': students,
+            'ratings': ratings,
+            'selected_student_id': selected_student_id,
+            }
+    return render(request, 'ratings/instr_list_eldt.html', context)
 
 def instr_edit_eldt(request, pk):
     # 1. Fetch the existing record using the ID (pk) from the URL

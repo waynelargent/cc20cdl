@@ -26,11 +26,11 @@ def instr_list_attendance(request):
     ratings = Attendance.objects.all().order_by('-rating_date')
     if selected_student_id:
         ratings = ratings.filter(student_id=selected_student_id)
-        context = {
+    context = {
             'students': students,
             'ratings': ratings,
             'selected_student_id': selected_student_id,
-        }
+    }
     return render(request, 'ratings/instr_list_attendance.html', context)
 
 def instr_edit_attendance(request, pk):
@@ -46,3 +46,7 @@ def instr_edit_attendance(request, pk):
         # 3. GET request: Pre-fill the form with the existing data
         form = forms.CreateAttendance(instance=record)
     return render(request, 'ratings/attendance.html', {'form': form})
+
+def student_list_attendance(request):
+    ratings = Attendance.objects.filter(student = request.user).order_by('-rating_date') 
+    return render(request, 'ratings/student_list_attendance.html', {'ratings': ratings})
