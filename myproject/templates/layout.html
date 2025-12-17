@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load auth_extras %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -47,10 +48,7 @@
             <nav class="primary-nav">
                 <ul>
                     <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
-                    <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="/ratings/narrative/" class="{% if request.path|slice:':19' == '/ratings/narrative/' %}active{% endif %}">Narrative Form</a></li>
                         <li>
                             <form class="logout primary-logout" method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}
@@ -67,26 +65,34 @@
 
     <div class="layout-shell">
         <aside class="sidebar">
-            <h2>Resources</h2>
+            <h2>FORMS</h2>
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li><a href="/about/" class="{% if request.path|slice:':7' == '/about/' %}active{% endif %}">About</a></li>
-                    <li><a href="/privacy/" class="{% if request.path|slice:':9' == '/privacy/' %}active{% endif %}">Privacy</a></li>
                     {% if user.is_authenticated %}
-                       
-                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':27' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative Form</a></li>
-                       
+                     <!-- INSTRUCTOR STUFF HERE -->
+                       {% if request.user|has_group:"instructors" %}
                         <li><a href="/ratings/instr-list-attendance/" class="{% if request.path|slice:':31' == '/ratings/instr-list-attendance/' %}active{% endif %}">Attendance</a></li>
-                        
-                        <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
-                        <li><a href="/ratings/instr-list-backing-skills/" class="{% if request.path|slice:':24' == '/instr-list-backing-skills/' %}active{% endif %}">Backing Skills</a></li>
-                        <li><a href="/ratings/instr-list-road-skills/" class="{% if request.path|slice:':21' == '/ratings/instr-list-road-skills/' %}active{% endif %}">Road Skills</a></li>
-                        <li><a href="/ratings/instr-list-eldt/" class="{% if request.path|slice:':25' == '/ratings/instr-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
-                        <!-- STUDENT STUFF HERE -->
-                        <li><a href="/ratings/student-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/student-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
 
-                      <!--  <li><a href="/ratings/view-my-ratings/" class="{% if request.path|slice:':25' == '/ratings/view-my-ratings/' %}active{% endif %}">View My Ratings</a></li> --> 
+                        <li><a href="/ratings/instr-list-backing-skills/" class="{% if request.path|slice:':35' == '/ratings/instr-list-backing-skills/' %}active{% endif %}">Backing Skills</a></li>
+
+                        <li><a href="/ratings/instr-list-eldt/" class="{% if request.path|slice:':25' == '/ratings/instr-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
+
+                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':30' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative Form</a></li>
+
+                        <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
+
+                        <li><a href="/ratings/instr-list-road-skills/" class="{% if request.path|slice:':32' == '/ratings/instr-list-road-skills/' %}active{% endif %}">Road Skills</a></li>
+                        <!-- STUDENT STUFF HERE -->
+                         {% endif %}
+                         {% if request.user|has_group:"students" %}
+                            <li><a href="/ratings/student-list-attendance/" class="{% if request.path|slice:':33' == '/ratings/student-list-attendance/' %}active{% endif %}">Attendance</a></li>
+                            <li><a href="/ratings/student-list-backing-skills/" class="{% if request.path|slice:':37' == '/ratings/student-list-backing-skills/' %}active{% endif %}">Backing Skills</a></li>
+                            <li><a href="/ratings/student-list-eldt/" class="{% if request.path|slice:':27' == '/ratings/student-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
+                            <li><a href="/ratings/student-list-narrative/" class="{% if request.path|slice:':32' == '/ratings/student-list-narrative/' %}active{% endif %}">Narrative</a></li>
+                            <li><a href="/ratings/student-list-pre-trip/" class="{% if request.path|slice:':31' == '/ratings/student-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
+                            <li><a href="/ratings/student-list-road-skills/" class="{% if request.path|slice:':34' == '/ratings/student-list-road-skills/' %}active{% endif %}">Road Skills</a></li>
+                        {% endif %}
                         <li>
                             <form class="sidebar-logout" method="post" action="{% url 'users:logout' %}">
                                 {% csrf_token %}
