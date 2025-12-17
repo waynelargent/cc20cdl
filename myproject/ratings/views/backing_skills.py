@@ -50,3 +50,6 @@ def instr_edit_backing_skills(request, pk):
     return render(request, 'ratings/backing_skills.html', {'form': form})
 
 
+def student_list_backing_skills(request):
+    ratings = BackingSkills.objects.filter(student = request.user).order_by('-rating_date') 
+    return render(request, 'ratings/student_list_backing_skills.html', {'ratings': ratings})
