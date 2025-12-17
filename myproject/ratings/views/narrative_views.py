@@ -51,3 +51,8 @@ def instr_edit_narrative(request, pk):
         # 3. GET request: Pre-fill the form with the existing data
         form = forms.CreateNarrative(instance=record)
     return render(request, 'ratings/instr_list_narrative.html', {'form': form})
+
+
+def student_list_narrative(request):
+    ratings = Narrative.objects.filter(student = request.user).order_by('-rating_date') 
+    return render(request, 'ratings/student_list_narrative.html', {'ratings': ratings})
