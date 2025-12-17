@@ -13,20 +13,23 @@ ELDT Logs
   </style>
 <h2>ELDT Logs</h2>
   <div class="left">
-    <form method="get" style="display:inline;">
-      <select name="student" id="student">
-        <option value="">Select Student</option>
-        {% for s in students %}
-          <option value="{{ s.id }}" {% if selected_student == s.id|stringformat:"s" %}selected{% endif %}>
-            {{ s.get_full_name|default:s.username }}
-          </option>
-        {% endfor %}
-      </select>
-      &nbsp;&nbsp;&nbsp;<button type="submit">Submit</button>
-    </form>
+    <form method="GET" action="">
+        <label for="student_id">Filter by Student:</label>
+        <select name="student_id" id="student_id" onchange="this.form.submit()">
+          <option value="">-- All Students --</option>
+          {% for student in students %}
+            <option value="{{ student.id }}" 
+                {% if selected_student_id == student.id|stringformat:"i" %}selected{% endif %}>
+                {{ student.get_full_name|default:student.username }}
+            </option>
+          {% endfor %}
+        </select>
+        &nbsp;&nbsp;&nbsp;<a href="{% url 'ratings:eldt-and-score-sheet' %}">Clear</a>
+      </form>
+      <!-- this button cannot be in the form or it thinks it is a submit button -->
     &nbsp;&nbsp;&nbsp;<a href="{% url 'ratings:eldt-and-score-sheet' %}"><button type="button">New</button></a>
   </div><br />
-
+  <hr>
   <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead class="table-dark">
