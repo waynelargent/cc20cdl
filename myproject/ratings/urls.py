@@ -33,6 +33,7 @@ urlpatterns=[
 
     path("student-list-pre-trip/", views.student_list_pre_trip, name = "student-list-pre-trip"), 
     path("student-list-attendance/", views.student_list_attendance, name = "student-list-attendance"), 
+    path("student-list-road-skills/", views.student_list_road_skills, name = "student-list-road-skills"), 
 
 ]
 

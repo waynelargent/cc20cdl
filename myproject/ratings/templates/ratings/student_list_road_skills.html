@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    View My Road Skill Ratings
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>My Evaluations</h2>
+  <div >
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Instructor</th>
+          <th>Truck Number</th>
+          <th>Acceleration</th>
+          <th>Braking</th>
+          <th>Steering</th>
+          <th>Shifting</th>
+          <th>Right Turn Approach</th>
+          <th>Right Turn Turning</th>
+          <th>Right Turn Complete Turn</th>
+          <th>Right Turn Signal Use</th>
+          <th>Left Turn Approach</th>
+          <th> Left Turn Turning</th>
+          <th> Left Turn Complete Turn </th>
+          <th> Left Turn Signal Use </th>
+          <th> Lane Control</th>
+          <th> Smooth Braking</th>
+          <th> Proper Stop</th>
+          <th> Proper Mirror</th>
+          <th> Enter Interstate</th>
+          <th> Proper Lane Change</th>
+          <th> Speed Following Distance</th>
+          <th> Exit Interstate</th>
+          <th> Railroad Approach</th>
+          <th> Railroad Crossing</th>
+          <th> Railroad Completion</th>
+          <th> Pull Over Deceleration</th>
+          <th> Pull Over Smooth</th>
+          <th> Pull Over Re-Entry</th>
+          <th> Recognize Traffic Hazards</th>
+          <th> Recognize Overhead Hazards</th>
+          <th> Obey Laws</th>
+          <th> Smith System Defensive Driving</th>
+          <th> BTW Hours</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Action</th>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.rating_date|date:"M d, Y" }}</td>
+            <td>{{ r.instructor }}</td>
+            <td>{{ r.truck_num }}</td>
+            <td>{{ r.acceleration }}</td>
+            <td>{{ r.braking }}</td>
+            <td>{{ r.steering }}</td>
+            <td>{{ r.shifting }}</td>
+            <td>{{ r.rturn_approach}}</td>
+            <td>{{ r.rturn_turning }}</td>
+            <td>{{ r.rturn_complete_turn }}</td>
+            <td>{{ r.rturn_signal_use }}</td>
+            <td>{{ r.lturn_approach }}</td>
+            <td>{{ r.lturn_turning }}</td>
+            <td>{{ r.lturn_complete_turn }}</td>
+            <td>{{ r.lturn_signal_use }}</td>
+            <td>{{ r.lane_control }}</td>
+            <td>{{ r.smooth_braking }}</td>
+            <td>{{ r.proper_stop }}</td>
+            <td>{{ r.proper_mirror }}</td>
+            <td>{{ r.enter_interstate }}</td>
+            <td>{{ r.proper_lane_change }}</td>
+            <td>{{ r.speed_following_distance }}</td>
+            <td>{{ r.exit_interstate }}</td>
+            <td>{{ r.railroad_approach }}</td>
+            <td>{{ r.railroad_crossing }}</td>
+            <td>{{ r.railroad_completion }}</td>
+            <td>{{ r.pull_over_deceleration }}</td>
+            <td>{{ r.pull_over_smooth }}</td>
+            <td>{{ r.pull_over_re_entry }}</td>
+            <td>{{ r.recognize_traffic_hazards }}</td>
+            <td>{{ r.recognize_ohead_hazards }}</td>
+            <td>{{ r.obey_laws }}</td>
+            <td>{{ r.smith_system_defensive_driving }}</td>
+            <td>{{ r.btw_hours }}</td>
+            <td>
+                {% if r.instructor_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+               {% if r.student_approval %}
+                    <i class="fa-solid fa-check"></i>
+                {% else %}
+                    ---
+                {% endif %}
+            </td>
+            <td>
+                <i class="fas fa-edit"></i>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3" class="text-center">
+              No evaluations found.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
