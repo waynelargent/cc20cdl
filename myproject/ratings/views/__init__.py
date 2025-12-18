@@ -7,6 +7,7 @@ from .backing_skills import backing_skills, instr_list_backing_skills, instr_edi
 from .narrative_views import view_my_ratings, narrative, instr_list_narrative, instr_edit_narrative
 from .pre_trip_views import student_list_pre_trip
 from .attendance_views import student_list_attendance
+from .backing_skills import student_list_backing_skills
 from .road_skills import student_list_road_skills
 
 

@@ -32,7 +32,8 @@ urlpatterns=[
     path('instr-edit-narrative/<int:pk>/', views.instr_edit_narrative, name='instr-edit-narrative'),
 
     path("student-list-pre-trip/", views.student_list_pre_trip, name = "student-list-pre-trip"), 
-    path("student-list-attendance/", views.student_list_attendance, name = "student-list-attendance"), 
+    path("student-list-attendance/", views.student_list_attendance, name = "student-list-attendance"),
+    path("student-list-backing-skills/", views.student_list_backing_skills, name = "student-list-backing-skills"),
     path("student-list-road-skills/", views.student_list_road_skills, name = "student-list-road-skills"), 
 
 ]
