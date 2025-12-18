@@ -48,3 +48,7 @@ def instr_edit_road_skills(request, pk):
         # 3. GET request: Pre-fill the form with the existing data
         form = forms.CreateRoadSkills(instance=record)
     return render(request, 'ratings/road_skills.html', {'form': form})
+
+def student_list_road_skills(request):
+    ratings = RoadSkills.objects.filter(student = request.user).order_by('-rating_date') 
+    return render(request, 'ratings/student_list_road_skills.html', {'ratings': ratings})
