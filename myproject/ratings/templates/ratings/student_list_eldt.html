@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% block title %}
+View My ELDT Ratings
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+<h2>My Evaluations</h2>
+  </div><br />
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Instructor</th>
+          <th>Chapter</th>
+          <th>Lesson Plan</th>
+          <th>Score</th>
+          <th>Instructor Approval</th>
+          <th>Student Approval</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in ratings %}
+          <tr>
+            <td>{{ r.instructor }}</td>
+            <td>{{ r.get_chapter_display }}</td>
+            <td class="left">{{ r.lesson_plan|linebreaksbr }}</td>
+            <td>{{ r.score }}</td>
+            <td>{% if r.instructor_approval %}<i class="fa-solid fa-check"></i>{% else %}---{% endif %}</td>
+            <td>{% if r.student_approval %}<i class="fa-solid fa-check"></i>{% else %}---{% endif %}</td>
+            </td>
+            <td>
+                <i class="fas fa-edit"></i>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="8" class="text-center">No ELDT records found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

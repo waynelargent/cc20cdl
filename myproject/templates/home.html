@@ -6,8 +6,35 @@
 {% endblock %}
 
 {% block content %}
-    <h1>HOME</h1>
-    <p>This is the home page.</p>
-    
-    <img src="{% static 'img/transportation-banner.jpg' %}" alt="Picture of a truck" style="max-width: 100%; height: auto;">
+
+    <div class="banner-container">
+        <img src="{% static 'img/transportation-banner.jpg' %}" alt="Truck Banner" class="banner-img">
+        
+        <div class="banner-title-bar">
+            Transportation and Logistics Training Academy
+        </div>
+    </div>
+
+    <div class="contact-box">
+        <h2>How to reach us</h2>
+        
+        <p>
+            <strong>Office Hours</strong><br>
+            Monday-Thursday: 9 a.m. - 4:30 p.m.<br>
+            Friday: 9 a.m. - 4 p.m.
+        </p>
+
+        <p>
+            <strong>Transportation Innovation Center</strong> 
+            (<a href="https://maps.google.com" target="_blank" class="contact-link">Map</a>)<br>
+            24881 Rockwell Drive<br>
+            Euclid, Ohio 44117
+        </p>
+
+        <p>
+            <a href="mailto:transportation@tri-c.edu" class="contact-link">transportation@tri-c.edu</a><br>
+            216-987-3226
+        </p>
+    </div>
+
 {% endblock %}

@@ -10,4 +10,6 @@ from .attendance_views import student_list_attendance
 from .narrative_views import student_list_narrative
 
 
+from .eldt_views import student_list_eldt
+
 
