@@ -8,8 +8,8 @@ from .narrative_views import view_my_ratings, narrative, instr_list_narrative, i
 from .pre_trip_views import student_list_pre_trip
 from .attendance_views import student_list_attendance
 from .narrative_views import student_list_narrative
-
-
 from .eldt_views import student_list_eldt
+from .backing_skills import student_list_backing_skills
+from .road_skills import student_list_road_skills
 
 

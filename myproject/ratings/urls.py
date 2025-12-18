@@ -34,7 +34,10 @@ urlpatterns=[
     path("student-list-pre-trip/", views.student_list_pre_trip, name = "student-list-pre-trip"), 
     path("student-list-attendance/", views.student_list_attendance, name = "student-list-attendance"), 
     path("student-list-eldt/", views.student_list_eldt, name="student-list-eldt"),
-    path('student-list-narrative/', views.student_list_narrative, name='student-list-narrative')
+    path('student-list-narrative/', views.student_list_narrative, name='student-list-narrative'),
+    path("student-list-backing-skills/", views.student_list_backing_skills, name = "student-list-backing-skills"),
+    path("student-list-road-skills/", views.student_list_road_skills, name = "student-list-road-skills")
+
 ]
 
 
