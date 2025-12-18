@@ -45,3 +45,7 @@ def instr_edit_eldt(request, pk):
         # 3. GET request: Pre-fill the form with the existing data
         form = forms.CreateELDT(instance=record)
     return render(request, 'ratings/eldt_and_score_sheet.html', {'form': form})
+
+def student_list_eldt(request):
+    ratings = ELDT.objects.filter(student = request.user).order_by('chapter') 
+    return render(request, 'ratings/student_list_eldt.html', {'ratings': ratings})

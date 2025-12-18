@@ -71,18 +71,15 @@
                     <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
                     {% if user.is_authenticated %}
                      <!-- INSTRUCTOR STUFF HERE -->
-                       {% if request.user|has_group:"instructors" %}
+                       {% if request.user|has_group:"instructors" or request.user|has_group:"admin" %}
                         <li><a href="/ratings/instr-list-attendance/" class="{% if request.path|slice:':31' == '/ratings/instr-list-attendance/' %}active{% endif %}">Attendance</a></li>
 
                         <li><a href="/ratings/instr-list-backing-skills/" class="{% if request.path|slice:':35' == '/ratings/instr-list-backing-skills/' %}active{% endif %}">Backing Skills</a></li>
-
                         <li><a href="/ratings/instr-list-eldt/" class="{% if request.path|slice:':25' == '/ratings/instr-list-eldt/' %}active{% endif %}">ELDT &amp; Score Sheet</a></li>
-
-                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':30' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative Form</a></li>
-
+                        <li><a href="/ratings/instr-list-narrative/" class="{% if request.path|slice:':30' == '/ratings/instr-list-narrative/' %}active{% endif %}">Narrative</a></li>
                         <li><a href="/ratings/instr-list-pre-trip/" class="{% if request.path|slice:':29' == '/ratings/instr-list-pre-trip/' %}active{% endif %}">Pre-Trip Inspection</a></li>
-
                         <li><a href="/ratings/instr-list-road-skills/" class="{% if request.path|slice:':32' == '/ratings/instr-list-road-skills/' %}active{% endif %}">Road Skills</a></li>
+                        
                         <!-- STUDENT STUFF HERE -->
                          {% endif %}
                          {% if request.user|has_group:"students" %}
@@ -112,44 +109,97 @@
         </main>
     </div>
 
-    <footer class="site-footer">
-        <div class="footer-columns">
-            <div>
-                <h3>About Tri-C</h3>
-                <ul>
-                    <li><a href="#">Mission &amp; Vision</a></li>
-                    <li><a href="#">Accreditation</a></li>
-                    <li><a href="#">Leadership</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>Programs</h3>
-                <ul>
-                    <li><a href="#">Transportation</a></li>
-                    <li><a href="#">Manufacturing</a></li>
-                    <li><a href="#">Workforce Training</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="#">Student Services</a></li>
-                    <li><a href="#">Financial Aid</a></li>
-                    <li><a href="#">Campus Safety</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>Connect</h3>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Visit</a></li>
-                    <li><a href="#">Support Tri-C</a></li>
-                </ul>
+<footer class="site-footer">
+    <div class="footer-columns">
+        
+        <div class="footer-branding">
+            <img src="{% static 'img/tric-logo.svg' %}" alt="Cuyahoga Community College" class="footer-logo">
+            
+            <div class="address-block">
+                <p>&copy; {% now "Y" %} Cuyahoga Community College</p>
+                <p>700 Carnegie Avenue</p>
+                <p>Cleveland, Ohio 44115</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            © {% now "Y" %} Cuyahoga Community College · Transportation Innovation Center
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="https://www.tri-c.edu/administrative-departments/human-resources/careers.html" target="_blank">Employment at Tri-C</a></li>
+                <li><a href="https://my.tri-c.edu/" target="_blank">my Tri-C space</a></li>
+                <li><a href="https://www.tri-c.edu/athletics/index.html" target="_blank">Athletics</a></li>
+                <li><a href="https://www.tri-c.edu/online-learning/technology-resources/brightspace/index.html" target="_blank">Brightspace</a></li>
+                <li><a href="https://www.tri-c.edu/student-resources/bookstore.html" target="_blank">Bookstore</a></li>
+                <li><a href="https://www.tri-c.edu/schedule/index.html" target="_blank">Course Search</a></li>
+                <li><a href="https://catalog.tri-c.edu/" target="_blank">College Catalog</a></li>
+                <li><a href="https://www.tri-c.edu/library/index.html" target="_blank">Library</a></li>
+                <li><a href="https://www.tri-c.edu/online-learning/technology-resources/help-desk.html" target="_blank">Technical Support</a></li>
+                <li><a href="https://www.tri-c.edu/registrar/transcripts.html" target="_blank">Transcripts</a></li>
+                <li><a href="https://www.tri-c.edu/student-resources/bookstore.html" target="_blank">Spirit Shop</a></li>
+            </ul>
         </div>
-    </footer>
+
+        <div>
+            <h3>About Tri-C</h3>
+            <ul>
+                <li><a href="https://www.tri-c.edu/about/index.html" target="_blank">About</a></li>
+                <li><a href="https://www.tri-c.edu/about/presidents-office/index.html" target="_blank">President's Office</a></li>
+                <li><a href="https://www.tri-c.edu/about/accreditation/index.html" target="_blank">Accreditation</a></li>
+                <li><a href="https://www.tri-c.edu/administrative-departments/index.html" target="_blank">Administrative Departments</a></li>
+                <li><a href="https://www.tri-c.edu/student-accessibility-services/index.html" target="_blank">Accessibility</a></li>
+                <li><a href="https://www.tri-c.edu/about/board-of-trustees/index.html" target="_blank">Board of Trustees</a></li>
+                <li><a href="https://www.tri-c.edu/about/mission-vision-values.html" target="_blank">Mission, Vision, Values and Statement of Commitment</a></li>
+                <li><a href="https://www.tri-c.edu/consumer-information/index.html" target="_blank">Student Consumer Information</a></li>
+                <li><a href="https://www.tri-c.edu/administrative-departments/office-of-institutional-access/index.html" target="_blank">Title IX Equal Opportunity</a></li>
+                <li><a href="https://www.tri-c.edu/privacy.html" target="_blank">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Campus Locations</h3>
+            <div style="margin-bottom: 1rem;">
+                <select class="campus-select" onchange="window.open(this.value, '_blank')">
+                    <option value="">Select Campus</option>
+                    <option value="https://www.tri-c.edu/campuses-and-locations/eastern-campus/index.html">Eastern</option>
+                    <option value="https://www.tri-c.edu/campuses-and-locations/metropolitan-campus/index.html">Metropolitan</option>
+                    <option value="https://www.tri-c.edu/campuses-and-locations/western-campus/index.html">Western</option>
+                    <option value="https://www.tri-c.edu/campuses-and-locations/westshore-campus/index.html">Westshore</option>
+                </select>
+            </div>
+            <ul>
+                <li><a href="https://www.tri-c.edu/campuses-and-locations/index.html" target="_blank">Map & Directions</a></li>
+                <li><a href="https://www.tri-c.edu/parking/index.html" target="_blank">Parking</a></li>
+                <li><a href="https://www.tri-c.edu/administrative-departments/campus-police/index.html" target="_blank">Campus Police</a></li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem;">Connect With Us</h3>
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TriCedu" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://twitter.com/TriCedu" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/school/cuyahoga-community-college/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/tricedu/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/user/TriCedu" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <ul>
+                <li><a href="https://www.tri-c.edu/visit/index.html" target="_blank">Visit Tri-C</a></li>
+                <li><a href="https://www.tri-c.edu/directory.html" target="_blank">Phone Directory</a></li>
+                <li><a href="https://www.tri-c.edu/help/index.html" target="_blank">Tri-C 24/7</a></li>
+                <li><a href="https://www.tri-c.edu/help/index.html" target="_blank">Ask a Question</a></li>
+                <li><a href="https://www.tri-c.edu/live-chat/index.html" target="_blank">Live Chat</a></li>
+            </ul>
+            
+            <div class="phone-grid">
+                <span>Tri-C</span>
+                <a href="tel:2169876000" class="teal-link">216-987-6000</a>
+                
+                <span>Corporate College</span>
+                <a href="tel:2169872800" class="teal-link">216-987-2800</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
 </body>
 </html>

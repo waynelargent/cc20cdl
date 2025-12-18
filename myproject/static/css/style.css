@@ -402,3 +402,78 @@ table {
       cursor: pointer;
     }
     .center { text-align: center; }
+
+/* --- Banner Styling --- */
+.banner-container {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    overflow: hidden; /* Ensures corners stay rounded */
+}
+
+.banner-img {
+    width: 100%;
+    height: 250px;       /* FIXED HEIGHT: This stops the image from being huge */
+    object-fit: cover;   /* CROP: This keeps the image looking good, not squished */
+    object-position: center; 
+    display: block;
+}
+
+.banner-title-bar {
+    background-color: var(--brand-teal); /* Matches your Tri-C Teal */
+    color: white;
+    padding: 12px 20px;
+    text-align: center;  /* Centers the text like your photo */
+    font-weight: bold;
+    font-size: 1.25rem;
+    font-family: Arial, sans-serif;
+}
+
+/* --- Contact Box Styling --- */
+.contact-box {
+    background-color: #f1f4f5; /* The grey background color */
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border: 1px solid #d7dcde;
+}
+
+.contact-box h2 {
+    margin-top: 0;
+    color: var(--brand-teal);
+    font-size: 1.3rem;
+}
+
+.contact-box p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.contact-link {
+    color: var(--accent-red); /* The red link color */
+    font-weight: bold;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+/* Forces checkbox and label to stay on the same line */
+.checkbox-inline-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Vertically centers the box with the text */
+    gap: 10px; /* Adds space between the box and the text */
+}
+
+/* Ensures the label doesn't have a bottom margin pushing the box down */
+.checkbox-inline-row label {
+    margin-bottom: 0; 
+    font-weight: bold;
+}
+
+/* Optional: Adjusts the checkbox size if it looks too small */
+.checkbox-inline-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
