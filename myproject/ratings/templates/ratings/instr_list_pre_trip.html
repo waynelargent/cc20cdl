@@ -24,25 +24,29 @@
       <a href="/ratings/pre-trip-insp/"><button> New </button></a>  
     </div><br />
     <hr>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Student</th>
-          <th>Training Hours</th>
-          <th>Engine Compartment</th>
-          <th>In Cab & Light</th>
-          <th>Brake Tests</th>
-          <th>Truck Side Rear</th>
-          <th>Coupling Area</th>
-          <th>Drives and 5th Wheel</th>
-          <th>Trailer Sides</th>
-          <th>Trailer Tandems</th>
-          <th>Rear of Trailer</th>
-          <th>Instructor Approval</th>
-          <th>Student Approval</th>
-          <th>Action</th>
-      </thead>
+      <table>
+        <thead>
+          <tr>
+            <th style="vertical-align: bottom; width: 100px;">Date</th>
+            <th style="vertical-align: bottom; width: 150px;">Instructor</th>
+
+            <th class="skew"><div><span>Training Hours</span></div></th>
+            <th class="skew"><div><span>Engine Comp.</span></div></th>
+            <th class="skew"><div><span>In Cab & Light</span></div></th>
+            <th class="skew"><div><span>Brake Tests</span></div></th>
+            <th class="skew"><div><span>Truck Side Rear</span></div></th>
+            <th class="skew"><div><span>Coupling Area</span></div></th>
+            <th class="skew"><div><span>Drives/5th Wheel</span></div></th>
+            <th class="skew"><div><span>Trailer Sides</span></div></th>
+            <th class="skew"><div><span>Trailer Tandems</span></div></th>
+            <th class="skew"><div><span>Rear of Trailer</span></div></th>
+            
+            <th class="skew"><div><span>Instructor Appr.</span></div></th>
+            <th class="skew"><div><span>Student Appr.</span></div></th>
+
+            <th style="vertical-align: bottom; width: 60px">Action</th>
+  </tr>
+</thead>
       <tbody>
         {% for r in ratings %}
           <tr>
@@ -85,4 +89,5 @@
         {% endfor %}
       </tbody>
     </table>
+    </div>
 {% endblock %}

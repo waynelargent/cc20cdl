@@ -380,6 +380,7 @@ table {
       font-family: Cambria, Arial, sans-serif; 
       font-size: 14px;       
       color: #516067; 
+      table-layout: fixed; 
 }
   /* Header and Cell Styling */
     th, td {
@@ -402,6 +403,8 @@ table {
       cursor: pointer;
     }
     .center { text-align: center; }
+
+
 
 /* --- Banner Styling --- */
 .banner-container {
@@ -476,4 +479,53 @@ table {
     width: 16px;
     height: 16px;
     cursor: pointer;
+}
+/* --- "Skewed" Header Styling --- */
+
+th.skew {
+    height: 140px;             
+    width: 40px;   
+    min-width: 40px;
+    max-width: 40px;             
+    position: relative;
+    vertical-align: bottom !important; 
+    padding: 0 !important;     
+    border: none !important;  
+    background: none !important;
+}
+
+/* 2. The skewed box (The parallelograms) */
+th.skew > div {
+    position: relative;
+    top: 0px;
+    left: 0px; 
+    height: 100%;
+    width: 100%; 
+    transform: skew(-45deg, 0deg);
+    -ms-transform:skew(-45deg,0deg); /* IE 9 */
+    -moz-transform:skew(-45deg,0deg); /* Firefox */
+    -webkit-transform:skew(-45deg,0deg); /* Safari and Chrome */
+    -o-transform:skew(-45deg,0deg); /* Opera */  
+    transform-origin: bottom left;   
+    border-left: 1px solid #d1d1d1;
+    border-top: 1px solid #d1d1d1;
+    border-right: 1px solid #d1d1d1;
+    background-color: #fafafa;
+    overflow: visible; 
+}
+
+th.skew span {
+    transform: skew(45deg, 0deg) rotate(315deg);
+    -webkit-transform: skew(45deg, 0deg) rotate(315deg);
+    position: absolute;
+    bottom: 40px; 
+    left: 0px; 
+    display: block;
+    width: 200px; 
+    text-align: left;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 13px; 
+    color: #003a54;
+    z-index: 2; 
 }
