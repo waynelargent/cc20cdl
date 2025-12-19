@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="container mt-4">
-  <h2>My Attendance</h2>
+  <h2>My Evaluations</h2>
   <div >
     <table >
       <thead >
@@ -32,7 +32,7 @@
           <tr>
             <td>{{ r.rating_date|date:"M d, Y" }}</td>
             <td>{{ r.instructor }}</td>
-            <td>{{ r.btw_hours_today }}</td>
+            <td>{{ r.btw_hours }}</td>
             <td>{{ r.alley_dock }}</td>
             <td>{{ r.straight_line }}</td>
             <td>{{ r.off_set_backing_right }}</td>
